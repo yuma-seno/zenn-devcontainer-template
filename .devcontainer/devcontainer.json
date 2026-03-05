@@ -1,0 +1,48 @@
+{
+  "name": "Zenn CLI",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "node",
+  "workspaceFolder": "/workspaces",
+  // Zenn プレビューサーバーのポート転送
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Zenn Preview",
+      "onAutoForward": "openPreview"
+    }
+  },
+  // コンテナ起動後に Zenn プレビューを自動起動する場合はコメントアウトを外す
+  // "postStartCommand": "npx zenn preview",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Markdown 関連
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        // Zenn 専用エディタ（記事プレビュー）
+        "negokaz.zenn-editor",
+        // テキスト校正
+        "3w36zj6.textlint",
+        // Mermaid 図のシンタックスハイライト
+        "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.markdown-language-features",
+        "[markdown]": {
+          "editor.wordWrap": "on",
+          "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": false
+          }
+        },
+        "markdownlint.config": {
+          "MD041": false,
+          "MD013": false
+        }
+      }
+    }
+  },
+	"remoteUser": "vscode"
+}
