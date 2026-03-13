@@ -34,6 +34,13 @@ if [ "$uid" -ne 0 ]; then
     fi
 fi
 
+# Zenn プレビューサーバーをコンテナユーザーとしてバックグラウンドで起動する。
+# postStartCommand (docker exec 経由) と異なり、entrypoint から起動することで
+# セッションのライフサイクルに依存せず安定して動作する。
+nohup setpriv --reuid=$CONTAINER_USER --regid=$CONTAINER_USER --init-groups \
+    bash -c "cd $CONTAINER_WORKDIR && exec zenn preview" \
+    < /dev/null > /tmp/zenn-preview.log 2>&1 &
+
 # このスクリプト自体は root で実行されているので、uid/gid 調整済みの builder ユーザー
 # として指定されたコマンドを実行する。
 exec setpriv --reuid=$CONTAINER_USER --regid=$CONTAINER_USER --init-groups "$@"

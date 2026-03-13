@@ -11,8 +11,6 @@
       "onAutoForward": "openPreview"
     }
   },
-  // コンテナ起動後にバックグラウンドで Zenn プレビューを自動起動する
-  "postStartCommand": "bash -c 'setsid nohup zenn preview < /dev/null > /tmp/zenn-preview.log 2>&1 &'",
   "customizations": {
     "vscode": {
       "extensions": [
