@@ -11,8 +11,6 @@
       "onAutoForward": "openPreview"
     }
   },
-  // コンテナ起動後に Zenn プレビューを自動起動する場合はコメントアウトを外す
-  // "postStartCommand": "npx zenn preview",
   "customizations": {
     "vscode": {
       "extensions": [
